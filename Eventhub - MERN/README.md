@@ -1,83 +1,284 @@
-# Eventora - Full-Stack Event Booking Platform
+# 🎉 EventHub
 
-Eventora is a full-stack MERN application that allows users to seamlessly browse, register, and pay natively without any third party tools. It features an administrative dashboard for event organizers to create and manage free and paid events. All bookings can be managed manually by an admin to handle payments directly.
+A modern **MERN Stack Event Management & Booking Platform** designed to simplify event organization and ticket booking. EventHub enables users to explore events, reserve seats through a secure verification process, and track their bookings, while administrators can manage events, monitor bookings, and oversee platform activity from a dedicated dashboard.
 
-## Features
-- **User Authentication**: Secure login & registration with JWT and bcrypt.
-- **2FA OTP Verification**: 
-  - Mandatory Email OTP to activate your account upon Registration (or delayed login attempts).
-  - Mandatory Email OTP to finalize and secure event ticket booking.
-- **Role-Based Access**: 
-  - **Admin**: Create, edit, and delete events. Confirm and reject all incoming booking requests, mark them as 'Paid' or 'Not Paid'. Access is strictly locked to database-flagged users only.
-  - **User**: Browse events, submit ticket booking requests via OTP, view personal dashboard pending status, and cancel bookings.
-- **Event Management**: Create free and paid events with detailed descriptions, external image URLs, dates, categories, and seating capacity.
-- **Smart Booking System**:
-  - Mandatory 2FA OTP to authorize a booking request.
-  - All booking requests (both free and paid) enter a secure 'Pending' queue for Admin verification.
-  - Seat availability accurately updates and securely validates against overbooking logic.
-- **Admin Analytics Dashboard**: Track live data such as Pending Requests, Total Revenue, and Total Confirmed Paid Clients directly from the admin panel.
-- **Email Notifications**: Automated email delivery upon successful booking confirmation using Nodemailer.
-- **Sleek UI/UX**: Built entirely with React, Tailwind CSS, and polished with micro-interactions.
+Built with **MongoDB, Express.js, React, Node.js, Tailwind CSS**, and **Nodemailer**.
 
 ---
 
-## 🚀 Setup Instructions
+## ✨ Highlights
 
-### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
-You will also need a MongoDB database (e.g., [MongoDB Atlas Free Tier](https://www.mongodb.com/cloud/atlas/register)).
+* 🔐 Secure user authentication with JWT
+* 📧 Email OTP verification for account activation
+* 🎟️ OTP-protected event booking
+* 👤 User and Admin role management
+* 📅 Create and manage free & paid events
+* 💺 Automatic seat availability tracking
+* 📊 Admin analytics dashboard
+* 📨 Booking confirmation emails
+* 📱 Fully responsive interface
+* ⚡ Fast and modern React frontend
 
-### 1. Environment Variables Configuration
-Navigate to `server/.env` and fill in the necessary keys:
+---
+
+# 📌 Core Features
+
+## 👥 Authentication
+
+* User Registration
+* Secure Login
+* Password encryption using **bcrypt**
+* JWT-based authentication
+* Email OTP verification for account activation
+
+---
+
+## 🎫 Event Booking
+
+Users can:
+
+* Browse available events
+* View complete event details
+* Book free or paid events
+* Verify booking using Email OTP
+* Cancel pending bookings
+* Track booking status from their dashboard
+
+---
+
+## 🛠️ Admin Dashboard
+
+Administrators have complete control over the platform.
+
+### Event Management
+
+* Create events
+* Edit event details
+* Delete events
+* Manage event capacity
+* Upload event images via URL
+
+### Booking Management
+
+* View booking requests
+* Approve or reject bookings
+* Update payment status
+* Prevent overbooking
+
+### Dashboard Analytics
+
+View important platform statistics such as:
+
+* Total Events
+* Pending Requests
+* Confirmed Bookings
+* Paid Bookings
+* Revenue Overview
+
+---
+
+## 📧 Email Notifications
+
+Automatic emails are sent for:
+
+* Account verification
+* Booking confirmation
+* Booking status updates
+
+Powered by **Nodemailer**.
+
+---
+
+# 🖥️ Tech Stack
+
+### Frontend
+
+* React
+* Tailwind CSS
+* React Router
+* Axios
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+* bcrypt
+* Nodemailer
+
+---
+
+# 🚀 Getting Started
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/your-username/EventHub.git
+cd EventHub
+```
+
+---
+
+## 2. Configure Environment Variables
+
+Create a `.env` file inside the **server** folder.
+
 ```env
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=supersecretjwtkey_eventora
-EMAIL_USER=your_gmail_address
+JWT_SECRET=your_secret_key
+EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_gmail_app_password
 PORT=5000
 ```
-> **Note**: For `EMAIL_PASS`, you need to generate an "App Password" from your Google Account settings, standard passwords won't work due to 2FA.
 
-### 2. Run from Outer Folder (Single Terminal)
-You can now manage both backend and frontend from the project root:
+---
+
+## 3. Install Dependencies
+
+From the project root:
 
 ```bash
-# from Eventora root
 npm install
 npm run install:all
-npm run dev
 ```
 
-- `npm run dev` starts both `server` and `client` together using `concurrently`.
-- `npm run dev:all` installs dependencies (server + client) and starts both in one command.
-- `npm run start` runs backend `start` + frontend `preview` together.
+Or install manually.
 
-### 3. Install Dependencies
-Open two separate terminals for the backend and frontend.
+### Backend
 
-**Backend Terminal:**
 ```bash
 cd server
-npm install --legacy-peer-deps
+npm install
 ```
 
-**Frontend Terminal:**
+### Frontend
+
 ```bash
 cd client
 npm install
 ```
 
-### 4. Run the Application Local Servers
-**Run Backend:**
+---
+
+## 4. Run the Project
+
+From the root directory:
+
+```bash
+npm run dev
+```
+
+Or run separately.
+
+### Backend
+
 ```bash
 cd server
 npm run dev
 ```
-*(Server will run on `http://localhost:5000`)*
 
-**Run Frontend:**
+Runs on:
+
+```text
+http://localhost:5000
+```
+
+### Frontend
+
 ```bash
 cd client
 npm run dev
 ```
-*(Client will run on a local port provided by Vite, typically `http://localhost:5173`)*
+
+Runs on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+EventHub
+│
+├── client
+│   ├── src
+│   ├── public
+│   └── package.json
+│
+├── server
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── utils
+│   └── package.json
+│
+├── package.json
+└── README.md
+```
+
+---
+
+# 🔒 Security Features
+
+* JWT Protected Routes
+* Password Hashing with bcrypt
+* Email OTP Verification
+* Role-Based Authorization
+* Booking Validation
+* Seat Availability Protection
+
+---
+
+# 💡 Why EventHub?
+
+Managing event registrations manually can quickly become difficult. EventHub provides an organized workflow where users can securely reserve seats while administrators efficiently manage events, bookings, and payments from one centralized platform.
+
+Whether it's a college fest, workshop, seminar, conference, or community meetup, EventHub streamlines the entire booking experience.
+
+---
+
+# 📸 Screenshots
+
+Add screenshots of your application here.
+
+```
+Home Page
+Admin Dashboard
+Event Details
+Booking Page
+User Dashboard
+```
+
+---
+
+# 🚀 Future Enhancements
+
+* Online Payment Gateway Integration
+* QR Code Based Tickets
+* Event Search & Filters
+* User Profile Management
+* Event Reviews & Ratings
+* Push Notifications
+* Multi-language Support
+
+---
+
+# 📄 License
+
+This project is created for learning and portfolio purposes.
+
+Feel free to fork, explore, and build upon it.
+
+---
+
+## ⭐ Show Your Support
+
+If you like this project, don't forget to **star ⭐ the repository** and share your feedback!
+
+Happy Coding! 🚀
